@@ -7,6 +7,7 @@ import Location from './components/Location';
 import Prices from './components/Prices';
 import ProductListing from './components/ProductListing';
 import './App.css';
+import SellerSignup from './components/SellerSignup';
 
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
             </Route> 
             <Route exact path='/listing'>
               <ProductListing/>
+            </Route>
+            <Route exact path='/sellersignup'>
+              <SellerSignup/>
             </Route> 
           </Switch>  
         </div>  
