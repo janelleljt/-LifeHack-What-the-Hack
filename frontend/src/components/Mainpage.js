@@ -11,7 +11,7 @@ function Mainpage() {
 
         <div className='Mainlinks'>
             <Link to='/location' className='Link1'>Filter by Locations</Link>
-            <Link to='/price' className='Link2'>Filter by Prices</Link>
+            <Link to='/prices' className='Link2'>Filter by Prices</Link>
         </div>
     </div>
   )
