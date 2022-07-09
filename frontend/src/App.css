@@ -1,1 +1,11 @@
+body {
+    margin: 0px auto;
+    padding: 0px;
+    background-color: #ffe8c2;
+    width: 100%;
+}
 
+.App {
+    background-color: #ffe8c2;
+    font-family: 'Poppins';
+}
