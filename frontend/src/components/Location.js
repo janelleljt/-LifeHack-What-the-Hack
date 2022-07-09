@@ -1,8 +1,11 @@
 import React from 'react'
 import '../css/Location.css';
+import Navbar from './Navbar';
 
 function Location() {
   return (
+    <div>
+        <Navbar/>
     <div className='Location'>
         <div className='Ques'>
             <h1>Choose Location</h1>
@@ -58,6 +61,7 @@ function Location() {
                 <option value="yishun">Yishun</option>
             </select>
         </div>
+    </div>
     </div>
   )
 }

@@ -1,8 +1,11 @@
 import React from 'react'
 import '../css/Prices.css';
+import Navbar from './Navbar';
 
 function Prices() {
   return (
+    <div>
+        <Navbar/>
     <div className='Price'>
         <div className='PriceQues'>
             <h1>Choose Price Range</h1>
@@ -34,6 +37,7 @@ function Prices() {
                 <option value="100">96-100</option>
             </select>
         </div>
+    </div>
     </div>
   )
 }
