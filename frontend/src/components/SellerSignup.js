@@ -4,6 +4,9 @@ import '../css/SellerSignup.css';
 
 const SellerSignup = () => {
     
+    const handleSubmit = () => {
+
+    }
 
     return(
         <view className="view">
@@ -55,8 +58,7 @@ const SellerSignup = () => {
                 </div>
             </div>
             <button class="button">
-                <span class="buttonText">Submit</span>
-                <i class="ri-check-line icon"></i>
+                <span class="buttonText" onClick={handleSubmit}>Submit</span>\
             </button>
         </view> 
     );

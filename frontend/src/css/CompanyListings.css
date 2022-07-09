@@ -1,0 +1,22 @@
+.view{
+    display: flex;
+    background-color: #ffe8c2;
+}
+
+.container {
+    width: 80vw;
+}
+
+.header {
+    padding: 10px;
+}
+
+.rows {
+    padding: 20px;
+    background-color: #ffe8c2;
+}
+
+.cols{
+    padding: 20px;
+    background-color: #ffe8c2;
+}
