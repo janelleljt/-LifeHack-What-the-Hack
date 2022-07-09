@@ -52,6 +52,27 @@ class Database:
             return e
 
     '''
+    Query to insert company and branch into Branches database
+    '''
+    def insert_branch(self, branchName, companyName, branchAddress, branchArea, password):
+            try:
+                LOCK.acquire(True)
+                ## if branch and company name exists, do not insert
+                self.cur.execute("SELECT * FROM Branches WHERE CompanyName=? AND BranchName=?",(companyName, branchName,))
+                if (len(self.cur.fetchall())):
+                    return False
+
+                self.cur.execute("INSERT INTO Branches(BranchName, CompanyName, BranchAddress, BranchArea, BranchPassword) values (?,?,?,?,?)",
+                                (branchName, companyName, branchAddress, branchArea, password,))
+                self.con.commit()
+                return True
+            except Exception as e:
+                print(e)
+                return e
+            finally:
+                LOCK.release()
+                
+    '''
     Query to insert the listing into Listings database
     Branch ID will be passed in by storing with each 
     '''
@@ -134,7 +155,10 @@ class Database:
             return e
         finally:
             LOCK.release()
-
+    
+    '''
+    Query to return branch ID
+    '''
     def query_branchID(self, companyName, branchName):
         try:
             LOCK.acquire(True)
@@ -153,6 +177,9 @@ class Database:
         finally:
             LOCK.release()
 
+    '''
+    Query to return company listings of food
+    '''
     def query_company_listings(self, branchID):
         try:
             LOCK.acquire(True)
