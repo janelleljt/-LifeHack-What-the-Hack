@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import SellerSignup from './components/SellerSignup';
 
 function App() {
   return (
@@ -10,8 +11,8 @@ function App() {
             <Route exact path='/'>
               
             </Route>
-            <Route path='/joingame'>
-              
+            <Route path='/sellersignup'>
+              <SellerSignup/>
             </Route>
             <Route exact path='/entername'>
               
@@ -20,8 +21,7 @@ function App() {
               
             </Route>
           </Switch>  
-        </div>
-        <h4>hellow workd</h4>      
+        </div>      
     </Router>
   );
 }

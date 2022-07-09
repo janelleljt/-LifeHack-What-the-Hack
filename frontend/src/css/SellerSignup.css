@@ -1,0 +1,26 @@
+.view {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sellerSignupHeader{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sellerSignupHeaderText{
+    font-family: 'Poppins', sans-serif;
+}
+
+.sellerSignupInput {
+    border-radius: 50%;
+}
+
+.sellerSignupBody{
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
