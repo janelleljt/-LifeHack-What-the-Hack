@@ -6,7 +6,7 @@ import ProductInfoPage from './components/ProductInfoPage';
 import Location from './components/Location';
 import Prices from './components/Prices';
 import './App.css';
-
+import CreateListing from './components/CreateListing';
 
 function App() {
   return (
@@ -24,6 +24,9 @@ function App() {
             </Route>
             <Route exact path='/prices'>
               <Prices/>
+            </Route> 
+            <Route exact path='/createlisting'>
+              <CreateListing/>
             </Route> 
           </Switch>  
         </div>  
