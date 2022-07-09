@@ -21,7 +21,7 @@ function ProductListing() {
           </div>
 
           <div className='listing-container'>
-            <IndivListing id='listing-indivlisting'/>
+            <IndivListing/>
             <IndivListing/>
             <IndivListing/>
             <IndivListing/>

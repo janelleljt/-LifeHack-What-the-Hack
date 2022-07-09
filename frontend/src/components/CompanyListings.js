@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import fruit from '../images/fruits.png';
 import Button from 'react-bootstrap/Button';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
 
 const CompanyListings = () => {

@@ -5,21 +5,21 @@ import fruits from '../images/fruits.png'
 import '../css/IndivListing.css'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-function IndivListing() {
+function IndivListing(details) {
   return (
     <div>
         <Card style={{ width: '15rem' }}>
               <Card.Img variant="top" src={fruits} className='indivlisting-img'/>
               <Card.Body className='indivlisting-details'>
-                <Card.Title className='indivlisting-title'>Price</Card.Title>
+                <Card.Title className='indivlisting-title'>{details.price}</Card.Title>
                 <Card.Text className='indivlisting-text'>
-                    Item name
+                    {details.name}
                 </Card.Text>
                 <Card.Text className='indivlisting-text'>
-                    Item description
+                    {details.desc}
                 </Card.Text>
                 <Card.Text className='indivlisting-text'>
-                    Item area
+                    {details.location}
                 </Card.Text>
                 <Button variant="primary">View</Button>
               </Card.Body>

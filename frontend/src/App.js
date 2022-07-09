@@ -11,7 +11,6 @@ import CreateListing from './components/CreateListing';
 import SellerSignup from './components/SellerSignup';
 import CompanyListings from './components/CompanyListings';
 import Login from './components/Login';
-import CreateListing from './components/CreateListing';
 
 
 function App() {
