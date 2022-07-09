@@ -7,6 +7,7 @@ import Location from './components/Location';
 import Prices from './components/Prices';
 import ProductListing from './components/ProductListing';
 import './App.css';
+import CreateListing from './components/CreateListing';
 import SellerSignup from './components/SellerSignup';
 import CompanyListings from './components/CompanyListings';
 import Login from './components/Login';
