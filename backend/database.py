@@ -105,13 +105,74 @@ class Database:
         finally:
             LOCK.release()
 
+    def query_listing_area(self, branch_area):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Listings, Branches WHERE Listings.BranchID in (SELECT BranchID FROM Branches WHERE BranchArea=?) and Listings.ListingBranchID = Branches.BranchID", (branch_area,))
+            self.con.commit()
+            rows = self.cur.fetchall()
+            listing_area = rows[0]
+            print(listing_area)
+            return listing_area
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
 
-    
+    def query_price_details(self, price_range):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Listings WHERE ListingPrice=?", (price_range,))
+            self.con.commit()
+            rows = self.cur.fetchall()
+            price_details = rows[0]
+            print(price_details)
+            return price_details
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
 
+    def query_branchID(self, companyName, branchName):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Branches WHERE CompanyName=? AND BranchName=?", (companyName, branchName,))
+            self.con.commit()
+            rows = self.cur.fetchall()
+            #only interested in the first row returned
+            #branch ID is the first item in the row
+            branch_id = rows[0][0]
+            print(branch_id)
+            return branch_id
 
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
 
+    def query_company_listings(self, branchID):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Listings WHERE BranchID=?", (branchID,))
+            self.con.commit()
+            rows = self.cur.fetchall()
+            if not (rows):
+                return
+            
+            listingArr = []
 
-
-
-
+            for row in rows:
+                listingArr.append(row)
+            
+            print(listingArr)
+            return listingArr
+            
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
 

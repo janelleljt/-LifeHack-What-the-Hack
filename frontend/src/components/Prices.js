@@ -1,6 +1,7 @@
 import React from 'react'
 import '../css/Prices.css';
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 function Prices() {
   return (
@@ -36,6 +37,10 @@ function Prices() {
                 <option value="95">91-95</option>
                 <option value="100">96-100</option>
             </select>
+        </div>
+
+        <div className='PriceLink'>
+            <Link to='/listing' className='pricelink'>Continue</Link>
         </div>
     </div>
     </div>
