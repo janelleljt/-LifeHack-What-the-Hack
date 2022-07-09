@@ -1,0 +1,12 @@
+.indivlisting-img {
+    border: 10px #f0a868 solid;
+}
+
+.indivlisting-details {
+    background-color: #f0a868;
+}
+
+.indivlisting-text {
+    margin: 0px;
+    font-family: 'Poppins', sans-serif;
+}
