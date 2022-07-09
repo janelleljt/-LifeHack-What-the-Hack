@@ -1,0 +1,42 @@
+.navbar {
+    display: flex;
+    top: 0px;
+    background-color: #a55712;
+    padding: 10px 30px;
+    justify-content: space-between;
+}
+
+.navbar-logo {
+    height: 75px;
+}
+
+.navbar-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #CECECE;
+    margin: 10px 20px;
+    font-size: 36px;
+}
+
+.navbar-item1 {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-item2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #251304;
+    margin: 10px 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-lockicon {
+    height: 25px;
+    margin: 10px 5px;
+}
+
+.navbar-login {
+    margin: 15px 0px;
+}

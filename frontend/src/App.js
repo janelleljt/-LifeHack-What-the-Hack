@@ -1,6 +1,9 @@
 import React from 'react'
 
+import './App.css'
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Mainpage from './components/Mainpage';
 
 function App() {
   return (
@@ -8,7 +11,7 @@ function App() {
         <div className='App'>
           <Switch>
             <Route exact path='/'>
-              
+              <Mainpage/>
             </Route>
             <Route path='/joingame'>
               
@@ -21,7 +24,6 @@ function App() {
             </Route>
           </Switch>  
         </div>
-        <h4>hellow workd</h4>      
     </Router>
   );
 }
