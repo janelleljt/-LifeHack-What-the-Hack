@@ -4,6 +4,7 @@ import './App.css'
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Mainpage from './components/Mainpage';
+import ProductInfoPage from './components/ProductInfoPage';
 
 function App() {
   return (
@@ -13,14 +14,8 @@ function App() {
             <Route exact path='/'>
               <Mainpage/>
             </Route>
-            <Route path='/joingame'>
-              
-            </Route>
-            <Route exact path='/entername'>
-              
-            </Route>   
-            <Route exact path='/entergamecode'>
-              
+            <Route exact path='/info'>
+              <ProductInfoPage/>
             </Route>
           </Switch>  
         </div>
