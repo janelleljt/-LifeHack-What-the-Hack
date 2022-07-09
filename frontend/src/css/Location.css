@@ -25,3 +25,15 @@
 #locations:hover {
     background-color: #6a8d73;
 }
+
+.LocLink {
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    background-color: #f0a868;
+    font-size: 20px;
+    margin: 10px;
+    font: bold;
+    padding: 20px;
+    color: black;
+    border-radius: 30px;
+}
