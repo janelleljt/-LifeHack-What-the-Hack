@@ -5,6 +5,7 @@ import Mainpage from './components/Mainpage';
 import ProductInfoPage from './components/ProductInfoPage';
 import Location from './components/Location';
 import Prices from './components/Prices';
+import ProductListing from './components/ProductListing';
 import './App.css';
 import SellerSignup from './components/SellerSignup';
 
@@ -26,6 +27,9 @@ function App() {
             <Route exact path='/prices'>
               <Prices/>
             </Route> 
+            <Route exact path='/listing'>
+              <ProductListing/>
+            </Route>
             <Route exact path='/sellersignup'>
               <SellerSignup/>
             </Route> 
