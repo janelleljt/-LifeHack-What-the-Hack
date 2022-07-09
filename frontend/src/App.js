@@ -7,13 +7,10 @@ import Location from './components/Location';
 import Prices from './components/Prices';
 import ProductListing from './components/ProductListing';
 import './App.css';
-<<<<<<< HEAD
-import CreateListing from './components/CreateListing';
-=======
 import SellerSignup from './components/SellerSignup';
 import CompanyListings from './components/CompanyListings';
+import CreateListing from './components/CreateListing';
 
->>>>>>> 63dd1ae00aeaf3fffc0539d35b298f8850bcc888
 
 function App() {
   return (
@@ -32,11 +29,6 @@ function App() {
             <Route exact path='/prices'>
               <Prices/>
             </Route> 
-<<<<<<< HEAD
-            <Route exact path='/createlisting'>
-              <CreateListing/>
-            </Route> 
-=======
             <Route exact path='/listing'>
               <ProductListing/>
             </Route>
@@ -46,7 +38,9 @@ function App() {
             <Route exact path='/companylisting'>
               <CompanyListings/>
             </Route>
->>>>>>> 63dd1ae00aeaf3fffc0539d35b298f8850bcc888
+            <Route exact path='/createlisting'>
+              <CreateListing/>
+            </Route>
           </Switch>  
         </div>  
     </Router>

@@ -1,6 +1,7 @@
 import React from 'react'
 import '../css/Location.css';
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 function Location() {
   return (
@@ -60,6 +61,10 @@ function Location() {
                 <option value="woodlands">Woodlands</option>
                 <option value="yishun">Yishun</option>
             </select>
+        </div>
+
+        <div className='LocLink'>
+            <Link to='/listing' className='loclink'>Continue</Link>
         </div>
     </div>
     </div>
