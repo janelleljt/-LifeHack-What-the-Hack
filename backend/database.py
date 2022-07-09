@@ -26,17 +26,13 @@ class Database:
     def create_tables(self):
         try:
             self.cur.execute(
-                '''CREATE TABLE Companies(
-                    CompanyID integer primary key, 
-                    CompanyName text)''')
-            self.cur.execute(
                 '''CREATE TABLE Branches(
                     BranchID integer primary key, 
                     BranchName text, 
-                    CompanyName text,
+                    CompanyName text, 
                     BranchAddress text, 
                     BranchArea text, 
-                    BranchPassword text, 
+                    BranchPassword text
                 )''')
             self.cur.execute(
                 '''CREATE TABLE Listings(
@@ -55,6 +51,9 @@ class Database:
             print(e)
             return e
 
+    '''
+    Query to insert company and branch into Branches database
+    '''
     def insert_branch(self, branchName, companyName, branchAddress, branchArea, password):
             try:
                 LOCK.acquire(True)
@@ -72,7 +71,94 @@ class Database:
                 return e
             finally:
                 LOCK.release()
+                
+    '''
+    Query to insert the listing into Listings database
+    Branch ID will be passed in by storing with each 
+    '''
+    def insert_listing(self, listingName, description, price, companyName, branchId, image):
+        try:
+            LOCK.acquire(True)
 
+            self.cur.execute("INSERT INTO Listings(ListingName, ListingDescription, ListingPrice, ListingCompanyName, ListingBranchID, ListingImage) VALUES (?,?,?,?,?,?,?)", 
+                (listingName, description, price, companyName, branchId, image))
+            
+            listingid = self.cur.last_insert_rowid()
+            self.con.commit()
+            return listingid
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release() 
+
+    '''
+    Query to delete listing from the listing database
+    ListingID will be stored in the frontend along with other data for each listing (but probably not displayed)
+    '''
+    def delete_listing(self, listingId):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("DELETE FROM Listings WHERE ListingID=?", (listingId,))
+            self.con.commit()
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
+    
+    '''
+    Query to select all listings
+    '''
+    def query_all_listings(self):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Listings")
+            rows = self.cur.fetchall()
+            arrayString = []
+            for row in rows:
+                arrayString.append(row)
+            print(arrayString)
+            return arrayString
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
+
+    def query_listing_area(self, branch_area):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Listings, Branches WHERE Listings.BranchID in (SELECT BranchID FROM Branches WHERE BranchArea=?) and Listings.ListingBranchID = Branches.BranchID", (branch_area,))
+            self.con.commit()
+            rows = self.cur.fetchall()
+            listing_area = rows[0]
+            print(listing_area)
+            return listing_area
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
+
+    def query_price_details(self, price_range):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Listings WHERE ListingPrice=?", (price_range,))
+            self.con.commit()
+            rows = self.cur.fetchall()
+            price_details = rows[0]
+            print(price_details)
+            return price_details
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
+    
+    '''
+    Query to return branch ID
+    '''
     def query_branchID(self, companyName, branchName):
         try:
             LOCK.acquire(True)
@@ -91,6 +177,9 @@ class Database:
         finally:
             LOCK.release()
 
+    '''
+    Query to return company listings of food
+    '''
     def query_company_listings(self, branchID):
         try:
             LOCK.acquire(True)
