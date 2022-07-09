@@ -52,64 +52,10 @@ class Database:
             return e
 
     '''
-    Query to insert company and branch into Branches database
+    Search Queries
     '''
-    def insert_branch(self, branchName, companyName, branchAddress, branchArea, password):
-            try:
-                LOCK.acquire(True)
-                ## if branch and company name exists, do not insert
-                self.cur.execute("SELECT * FROM Branches WHERE CompanyName=? AND BranchName=?",(companyName, branchName,))
-                if (len(self.cur.fetchall())):
-                    return False
-
-                self.cur.execute("INSERT INTO Branches(BranchName, CompanyName, BranchAddress, BranchArea, BranchPassword) values (?,?,?,?,?)",
-                                (branchName, companyName, branchAddress, branchArea, password,))
-                self.con.commit()
-                return True
-            except Exception as e:
-                print(e)
-                return e
-            finally:
-                LOCK.release()
-                
-    '''
-    Query to insert the listing into Listings database
-    Branch ID will be passed in by storing with each 
-    '''
-    def insert_listing(self, listingName, description, price, companyName, branchId, image):
-        try:
-            LOCK.acquire(True)
-
-            self.cur.execute("INSERT INTO Listings(ListingName, ListingDescription, ListingPrice, ListingCompanyName, ListingBranchID, ListingImage) VALUES (?,?,?,?,?,?,?)", 
-                (listingName, description, price, companyName, branchId, image))
-            
-            listingid = self.cur.last_insert_rowid()
-            self.con.commit()
-            return listingid
-        except Exception as e:
-            print(e)
-            return e
-        finally:
-            LOCK.release() 
-
-    '''
-    Query to delete listing from the listing database
-    ListingID will be stored in the frontend along with other data for each listing (but probably not displayed)
-    '''
-    def delete_listing(self, listingId):
-        try:
-            LOCK.acquire(True)
-            self.cur.execute("DELETE FROM Listings WHERE ListingID=?", (listingId,))
-            self.con.commit()
-        except Exception as e:
-            print(e)
-            return e
-        finally:
-            LOCK.release()
-    
-    '''
-    Query to select all listings
-    '''
+    # GOOD TO GO
+    # Query to select all listings
     def query_all_listings(self):
         try:
             LOCK.acquire(True)
@@ -126,28 +72,63 @@ class Database:
         finally:
             LOCK.release()
 
-    def query_listing_area(self, branch_area):
+    # GOOD TO GO
+    def query_all_branches(self):
         try:
             LOCK.acquire(True)
-            self.cur.execute("SELECT * FROM Listings, Branches WHERE Listings.BranchID in (SELECT BranchID FROM Branches WHERE BranchArea=?) and Listings.ListingBranchID = Branches.BranchID", (branch_area,))
-            self.con.commit()
+            self.cur.execute("SELECT * FROM Branches")
             rows = self.cur.fetchall()
-            listing_area = rows[0]
-            print(listing_area)
-            return listing_area
+            arrayString = []
+            for row in rows:
+                arrayString.append(row)
+            print(arrayString)
+            return arrayString
         except Exception as e:
             print(e)
             return e
         finally:
             LOCK.release()
 
-    def query_price_details(self, price_range):
+    # GOOD TO GO
+    # Query that returns listings according to branch area 
+    def query_listing_area(self, branch_area):
         try:
+            # select BranchID from Branches where Brancharea = ? -> array 
+            # select * from Listings where ListingBranchID = array[i] 
+
             LOCK.acquire(True)
-            self.cur.execute("SELECT * FROM Listings WHERE ListingPrice=?", (price_range,))
+
+            self.cur.execute("SELECT BranchID from Branches WHERE BranchArea=?", (branch_area, ))
             self.con.commit()
             rows = self.cur.fetchall()
-            price_details = rows[0]
+            listing_area = []
+
+            for i in rows:
+                self.cur.execute("SELECT * from Listings where ListingBranchID=?", (i[0], ))
+                self.con.commit()
+                listing = self.cur.fetchall()
+                listing_area.append(listing)
+            print(listing_area)
+            return listing_area
+
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
+
+    # GOOD TO GO
+    # Query that returns listings according to branch area 
+    def query_price_details(self, price_range_low:int,  price_range_high:int):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Listings WHERE ListingPrice BETWEEN ? and ?", (price_range_low, price_range_high, ))
+            self.con.commit()
+            rows = self.cur.fetchall()
+            price_details = []
+
+            for row in rows:
+                price_details.append(row)
             print(price_details)
             return price_details
         except Exception as e:
@@ -156,34 +137,12 @@ class Database:
         finally:
             LOCK.release()
     
-    '''
-    Query to return branch ID
-    '''
-    def query_branchID(self, companyName, branchName):
+    # GOOD TO GO
+    # Query to return company listings of food
+    def query_branch_listings(self, branchID):
         try:
             LOCK.acquire(True)
-            self.cur.execute("SELECT * FROM Branches WHERE CompanyName=? AND BranchName=?", (companyName, branchName,))
-            self.con.commit()
-            rows = self.cur.fetchall()
-            #only interested in the first row returned
-            #branch ID is the first item in the row
-            branch_id = rows[0][0]
-            print(branch_id)
-            return branch_id
-
-        except Exception as e:
-            print(e)
-            return e
-        finally:
-            LOCK.release()
-
-    '''
-    Query to return company listings of food
-    '''
-    def query_company_listings(self, branchID):
-        try:
-            LOCK.acquire(True)
-            self.cur.execute("SELECT * FROM Listings WHERE BranchID=?", (branchID,))
+            self.cur.execute("SELECT * FROM Listings WHERE ListingBranchID=?", (branchID,))
             self.con.commit()
             rows = self.cur.fetchall()
             if not (rows):
@@ -203,3 +162,78 @@ class Database:
         finally:
             LOCK.release()
 
+    # GOOD TO GO
+    # Query to return branch ID
+    def query_branchID(self, companyName, branchName):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Branches WHERE CompanyName=? AND BranchName=?", (companyName, branchName,))
+            self.con.commit()
+            rows = self.cur.fetchall()
+            #only interested in the first row returned
+            #branch ID is the first item in the row
+            branch_id = rows[0][0]
+            print(branch_id)
+            return branch_id
+
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
+
+    '''
+    INSERT Queries
+    '''
+    # GOOD TO GO
+    # Insert branch into Branches database
+    def insert_branch(self, branchName, companyName, branchAddress, branchArea, password):
+            try:
+                LOCK.acquire(True)
+                ## if branch and company name exists, do not insert
+                # self.cur.execute("SELECT * FROM Branches WHERE CompanyName=? AND BranchName=?",(companyName, branchName,))
+                # if (len(self.cur.fetchall())):
+                #     return False
+
+                self.cur.execute("INSERT INTO Branches(BranchName, CompanyName, BranchAddress, BranchArea, BranchPassword) values (?,?,?,?,?)",
+                                (branchName, companyName, branchAddress, branchArea, password,))
+                self.con.commit()
+                return True
+            except Exception as e:
+                print(e)
+                return e
+            finally:
+                LOCK.release()
+                
+    # GOOD TO GO
+    # Insert listing into Listings database
+    def insert_listing(self, listingName, description, price, companyName, branchId, image):
+        try:
+            LOCK.acquire(True)
+
+            self.cur.execute("INSERT INTO Listings(ListingName, ListingDescription, ListingPrice, ListingCompanyName, ListingBranchID, ListingImage) VALUES (?,?,?,?,?,?)", 
+                (listingName, description, price, companyName, branchId, image))
+            
+            self.con.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release() 
+
+    '''
+    DELETE Queries
+    '''
+    # Query to delete listing from the listing database
+    # ListingID will be stored in the frontend along with other data for each listing (but probably not displayed)
+    def delete_listing(self, listingId):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("DELETE FROM Listings WHERE ListingID=?", (listingId,))
+            self.con.commit()
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
