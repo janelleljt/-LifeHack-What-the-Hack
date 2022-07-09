@@ -2,9 +2,11 @@ import React from 'react'
 
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Mainpage from './components/Mainpage';
+import ProductInfoPage from './components/ProductInfoPage';
 import Location from './components/Location';
 import Prices from './components/Prices';
 import './App.css';
+
 
 function App() {
   return (
@@ -13,6 +15,9 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <Mainpage/>
+            </Route>
+            <Route exact path='/info'>
+              <ProductInfoPage/>
             </Route>
             <Route exact path='/location'>
               <Location/>
