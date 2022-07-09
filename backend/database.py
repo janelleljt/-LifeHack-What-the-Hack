@@ -55,7 +55,7 @@ class Database:
             print(e)
             return e
 
-def insert_branch(self, branchName, companyName, branchAddress, branchArea, password):
+    def insert_branch(self, branchName, companyName, branchAddress, branchArea, password):
             try:
                 LOCK.acquire(True)
                 ## if branch and company name exists, do not insert
