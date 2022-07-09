@@ -6,6 +6,7 @@ import Location from './components/Location';
 import Prices from './components/Prices';
 import './App.css';
 
+
 function App() {
   return (
     <Router className='background'>
