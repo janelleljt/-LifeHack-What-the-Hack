@@ -10,6 +10,7 @@ import './App.css';
 import CreateListing from './components/CreateListing';
 import SellerSignup from './components/SellerSignup';
 import CompanyListings from './components/CompanyListings';
+import Login from './components/Login';
 import CreateListing from './components/CreateListing';
 
 
@@ -30,9 +31,6 @@ function App() {
             <Route exact path='/prices'>
               <Prices/>
             </Route> 
-            <Route exact path='/createlisting'>
-              <CreateListing/>
-            </Route> 
             <Route exact path='/listing'>
               <ProductListing/>
             </Route>
@@ -41,6 +39,12 @@ function App() {
             </Route> 
             <Route exact path='/companylisting'>
               <CompanyListings/>
+            </Route>
+            <Route exact path='/login'>
+              <Login/>
+            </Route>
+            <Route exact path='/createlisting'>
+              <CreateListing/>
             </Route>
           </Switch>  
         </div>  
