@@ -1,0 +1,45 @@
+
+
+.Main {
+    background-color: #ffe8c2;
+    padding-top: 200px;
+}
+
+.Mainheader {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 60px;
+}
+
+.Mainlinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font: bold;
+    text-align: center;
+}
+
+.Link1 {
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    background-color: #f0a868;
+    font-size: 30px;
+    margin: 10px;
+    font: bold;
+    padding: 20px;
+    color: black;
+    border-radius: 30px;
+}
+
+.Link2 {
+    font-family: 'Raleway', sans-serif;
+    text-decoration: none;
+    background-color: #f0a868;
+    font: bold;
+    font-size: 30px;
+    margin: 10px;
+    padding: 20px;
+    color: black;
+    border-radius: 30px;
+}
+
