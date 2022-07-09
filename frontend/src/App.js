@@ -10,6 +10,7 @@ import './App.css';
 import CreateListing from './components/CreateListing';
 import SellerSignup from './components/SellerSignup';
 import CompanyListings from './components/CompanyListings';
+import CreateListing from './components/CreateListing';
 
 
 function App() {
@@ -29,9 +30,12 @@ function App() {
             <Route exact path='/prices'>
               <Prices/>
             </Route> 
+<<<<<<< HEAD
+=======
             <Route exact path='/createlisting'>
               <CreateListing/>
             </Route> 
+>>>>>>> 89a934aeadfd69f911e9bcfb20b73deadd06bd1e
             <Route exact path='/listing'>
               <ProductListing/>
             </Route>
@@ -41,6 +45,12 @@ function App() {
             <Route exact path='/companylisting'>
               <CompanyListings/>
             </Route>
+<<<<<<< HEAD
+            <Route exact path='/createlisting'>
+              <CreateListing/>
+            </Route>
+=======
+>>>>>>> 89a934aeadfd69f911e9bcfb20b73deadd06bd1e
           </Switch>  
         </div>  
     </Router>

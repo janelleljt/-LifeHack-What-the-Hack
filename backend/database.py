@@ -43,8 +43,13 @@ class Database:
                     ListingID integer primary key, 
                     ListingName text, 
                     ListingDescription text, 
+<<<<<<< HEAD
                     ListingPrice DECIMAL(6, 2), 
                     ListingCompanyName text, 
+=======
+                    ListingPrice decimal, 
+                    ListingCompanyID integer not null, 
+>>>>>>> 1bf538154a5b62a85f56c93fbaee4dd2dfd90af4
                     ListingBranchID integer not null, 
                     ListingImage BLOB, 
                     FOREIGN KEY(ListingBranchID) REFERENCES Branches(BranchID)
@@ -55,6 +60,7 @@ class Database:
             print(e)
             return e
 
+<<<<<<< HEAD
     def insert_branch(self, branchName, companyName, branchAddress, branchArea, password):
             try:
                 LOCK.acquire(True)
@@ -62,6 +68,37 @@ class Database:
                 self.cur.execute("SELECT * FROM Branches WHERE CompanyName=? AND BranchName=?",(companyName, branchName,))
                 if (len(self.cur.fetchall())):
                     return False
+=======
+    def query_listing_area(self, branch_area):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Listings, Branches WHERE Listings.BranchID in (SELECT BranchID FROM Branches WHERE BranchArea=?) and Listings.ListingBranchID = Branches.BranchID", (branch_area,))
+            self.con.commit()
+            rows = self.cur.fetchall()
+            listing_area = rows[0]
+            print(listing_area)
+            return listing_area
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
+
+    def query_price_details(self, price_range):
+        try:
+            LOCK.acquire(True)
+            self.cur.execute("SELECT * FROM Listings WHERE ListingPrice=?", (price_range,))
+            self.con.commit()
+            rows = self.cur.fetchall()
+            price_details = rows[0]
+            print(price_details)
+            return price_details
+        except Exception as e:
+            print(e)
+            return e
+        finally:
+            LOCK.release()
+>>>>>>> 1bf538154a5b62a85f56c93fbaee4dd2dfd90af4
 
                 self.cur.execute("INSERT INTO Branches(BranchName, CompanyName, BranchAddress, BranchArea, BranchPassword) values (?,?,?,?,?)",
                                 (branchName, companyName, branchAddress, branchArea, password,))
