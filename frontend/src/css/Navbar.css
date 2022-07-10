@@ -34,6 +34,12 @@
     font-size: 16px;
 }
 
+.navbar-profile {
+    padding-top: 15px;
+    height: 55px;
+    display: flex;
+}
+
 .navbar-lockicon {
     height: 25px;
     margin: 12px 5px;
@@ -44,4 +50,17 @@
     font-size: 20px;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
+}
+
+.navbar-signup {
+    margin: 15px 0px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.navbar-right {
+    text-align: right;
+    display: flex;
+    text-decoration: none;
 }

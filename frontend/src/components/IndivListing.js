@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import fruits from '../images/fruits.png'
 import '../css/IndivListing.css'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom'
 
 function IndivListing(details) {
   return (
@@ -21,7 +22,7 @@ function IndivListing(details) {
                 <Card.Text className='indivlisting-text'>
                     {details.location}
                 </Card.Text>
-                <Button variant="primary">View</Button>
+                <Link to='/info' className='itemview'><Button variant="primary">View</Button></Link>
               </Card.Body>
             </Card>
     </div>

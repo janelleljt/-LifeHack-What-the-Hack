@@ -20,3 +20,16 @@
     padding: 20px;
     background-color: #ffe8c2;
 }
+
+.createbutton {
+    background-color: white;
+    font-size: 20px;
+    border-radius: 20px;
+    font-family: 'Raleway', sans-serif;
+    color: #251304;
+    border: none;
+    margin-left: 45%;
+    width: 200px;
+    height: 50px;
+    margin-bottom: 50px;
+}

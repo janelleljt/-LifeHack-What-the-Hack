@@ -58,7 +58,7 @@ const SellerSignup = () => {
                 </div>
             </div>
             <button class="button">
-                <span class="buttonText" onClick={handleSubmit}>Submit</span>\
+                <span class="buttonText" onClick={handleSubmit}>Submit</span>
             </button>
         </view> 
     );
