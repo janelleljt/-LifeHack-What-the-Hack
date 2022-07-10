@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import fruit from '../images/fruits.png';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 // import { useEffect, useState } from 'react';
 
 
@@ -39,12 +40,20 @@ const CompanyListings = () => {
                                 <Card.Text> 
                                     Price : 
                                 </Card.Text>
-                                <Button variant="primary" onClick={handleClick}>View</Button>
+                                <Link to='info' className='itemview'><Button variant="primary">View</Button></Link>
                             </Card.Body>
                         </Card>
                         </Col>
                     ))}
                 </Row>
+            </div>
+            <div>
+                <Link to='createlisting' className='addbutton'>
+                <button class="createbutton">
+                    <span class="buttonText">Create New Listing</span>
+                    <i class="ri-check-line icon"></i>
+                </button>
+                </Link>
             </div>
         </view>
     );
