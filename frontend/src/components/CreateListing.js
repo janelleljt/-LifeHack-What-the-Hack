@@ -26,9 +26,8 @@ function CreateListing() {
           </div>
 
           <div>
-            <button class="button">
+            <button class="listButton">
                   <span class="buttonText">Create Listing</span>
-                  <i class="ri-check-line icon"></i>
             </button>
           </div>
       </div>
