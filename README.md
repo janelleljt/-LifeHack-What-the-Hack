@@ -1,4 +1,4 @@
-# -LifeHack-What-the-Hack
+# What-the-Hack
 
 ## **Project Title**
 Second Chance
